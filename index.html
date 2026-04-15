@@ -3,19 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quiz Estereotipias</title>
+<title>Super Quiz Estereotipias</title>
+
 <style>
 body {
   font-family: Arial, sans-serif;
-  background: #121212;
+  background: linear-gradient(135deg, #667eea, #764ba2);
   color: white;
   text-align: center;
 }
+
 .container {
-  max-width: 600px;
+  max-width: 700px;
   margin: auto;
   padding: 20px;
 }
+
 button {
   display: block;
   width: 100%;
@@ -25,14 +28,21 @@ button {
   border-radius: 10px;
   font-size: 16px;
   cursor: pointer;
+  transition: 0.3s;
 }
+
+button:hover {
+  transform: scale(1.05);
+}
+
 .correct { background: green; }
 .wrong { background: red; }
 </style>
 </head>
+
 <body>
 <div class="container">
-  <h1>🎮 Quiz: Estereotipias</h1>
+  <h1>🎮 Super Quiz: Estereotipias</h1>
   <h2 id="question"></h2>
   <div id="answers"></div>
   <h3 id="score"></h3>
@@ -40,6 +50,8 @@ button {
 
 <script>
 const quiz = [
+
+  // PRIMER QUIZ (5)
   {
     question: "¿Cuál es la verdad sobre las estereotipias en niños?",
     answers: [
@@ -84,7 +96,100 @@ const quiz = [
       {text: "Puede aparecer sin autismo", correct: true},
       {text: "Es exclusivo de adultos", correct: false}
     ]
+  },
+
+  // SEGUNDO QUIZ (10)
+  {
+    question: "¿Qué caracteriza a esta categoría de estereotipias?",
+    answers: [
+      {text: "No causan ningún daño", correct: false},
+      {text: "Generan daño corporal autoinducido", correct: true},
+      {text: "Solo afectan emociones", correct: false},
+      {text: "Son imaginarias", correct: false}
+    ]
+  },
+  {
+    question: "¿Cuándo se considera grave este comportamiento?",
+    answers: [
+      {text: "Cuando es divertido", correct: false},
+      {text: "Cuando causa lesiones significativas o riesgo de ellas", correct: true},
+      {text: "Solo si dura mucho tiempo", correct: false},
+      {text: "Cuando ocurre en público", correct: false}
+    ]
+  },
+  {
+    question: "¿Cuál es un ejemplo de autolesión?",
+    answers: [
+      {text: "Aplaudir", correct: false},
+      {text: "Saltar", correct: false},
+      {text: "Golpearse la cabeza contra la pared", correct: true},
+      {text: "Reírse", correct: false}
+    ]
+  },
+  {
+    question: "¿Cuál de estos también es un comportamiento autolesivo?",
+    answers: [
+      {text: "Cantar", correct: false},
+      {text: "Morderse manos o labios", correct: true},
+      {text: "Leer", correct: false},
+      {text: "Dormir", correct: false}
+    ]
+  },
+  {
+    question: "¿Qué puede pasar si no se trata este comportamiento?",
+    answers: [
+      {text: "Desaparece siempre solo", correct: false},
+      {text: "Puede causar lesiones graves", correct: true},
+      {text: "Mejora automáticamente", correct: false},
+      {text: "No pasa nada", correct: false}
+    ]
+  },
+  {
+    question: "¿Cuál es una señal visible de este problema?",
+    answers: [
+      {text: "Alegría constante", correct: false},
+      {text: "Moretones o heridas en el cuerpo", correct: true},
+      {text: "Hambre", correct: false},
+      {text: "Sueño", correct: false}
+    ]
+  },
+  {
+    question: "¿Qué puede necesitar una persona con este comportamiento?",
+    answers: [
+      {text: "Ignorarlo", correct: false},
+      {text: "Supervisión constante", correct: true},
+      {text: "Más tareas", correct: false},
+      {text: "Castigos", correct: false}
+    ]
+  },
+  {
+    question: "¿Cuándo suelen aumentar estos comportamientos?",
+    answers: [
+      {text: "En vacaciones", correct: false},
+      {text: "En momentos de estrés o frustración", correct: true},
+      {text: "Cuando llueve", correct: false},
+      {text: "Al dormir", correct: false}
+    ]
+  },
+  {
+    question: "¿En qué personas es más frecuente?",
+    answers: [
+      {text: "Solo adultos mayores", correct: false},
+      {text: "Personas con TEA o discapacidad intelectual", correct: true},
+      {text: "Solo deportistas", correct: false},
+      {text: "Solo estudiantes", correct: false}
+    ]
+  },
+  {
+    question: "¿Cuál de estos también es un ejemplo?",
+    answers: [
+      {text: "Escribir", correct: false},
+      {text: "Rascarse hasta hacerse heridas", correct: true},
+      {text: "Dibujar", correct: false},
+      {text: "Hablar", correct: false}
+    ]
   }
+
 ];
 
 let currentQuestion = 0;
@@ -119,11 +224,11 @@ function selectAnswer(correct, btn) {
     } else {
       showScore();
     }
-  }, 1000);
+  }, 800);
 }
 
 function showScore() {
-  document.getElementById("question").innerText = "¡Juego terminado!";
+  document.getElementById("question").innerText = "🎉 ¡Juego terminado!";
   document.getElementById("answers").innerHTML = "";
   document.getElementById("score").innerText = "Puntaje: " + score + "/" + quiz.length;
 }
