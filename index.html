@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz Estereotipias</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #121212;
+  color: white;
+  text-align: center;
+}
+.container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+}
+button {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.correct { background: green; }
+.wrong { background: red; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>🎮 Quiz: Estereotipias</h1>
+  <h2 id="question"></h2>
+  <div id="answers"></div>
+  <h3 id="score"></h3>
+</div>
+
+<script>
+const quiz = [
+  {
+    question: "¿Cuál es la verdad sobre las estereotipias en niños?",
+    answers: [
+      {text: "Siempre indican un trastorno", correct: false},
+      {text: "Solo aparecen en niños con autismo", correct: false},
+      {text: "Muchos niños sanos las tienen y desaparecen solas", correct: true},
+      {text: "Son peligrosas en todos los casos", correct: false}
+    ]
+  },
+  {
+    question: "¿Cuándo suelen aumentar las estereotipias?",
+    answers: [
+      {text: "Solo cuando el niño duerme", correct: false},
+      {text: "Con estrés, aburrimiento o emoción", correct: true},
+      {text: "Únicamente cuando están enfermos", correct: false},
+      {text: "Solo en la escuela", correct: false}
+    ]
+  },
+  {
+    question: "¿Qué diferencia hay entre estereotipias y tics?",
+    answers: [
+      {text: "Son exactamente lo mismo", correct: false},
+      {text: "Los tics empiezan antes de los 3 años", correct: false},
+      {text: "Las estereotipias son rítmicas y empiezan temprano", correct: true},
+      {text: "Los tics no cambian nunca", correct: false}
+    ]
+  },
+  {
+    question: "¿Qué animales pueden mostrar comportamientos similares por estrés?",
+    answers: [
+      {text: "Solo perros", correct: false},
+      {text: "Solo monos", correct: false},
+      {text: "Osos, loros o tigres en zoológicos", correct: true},
+      {text: "Ninguno", correct: false}
+    ]
+  },
+  {
+    question: "¿Cuál es una afirmación correcta sobre el aleteo?",
+    answers: [
+      {text: "Siempre significa autismo", correct: false},
+      {text: "Nunca aparece en niños sanos", correct: false},
+      {text: "Puede aparecer sin autismo", correct: true},
+      {text: "Es exclusivo de adultos", correct: false}
+    ]
+  }
+];
+
+let currentQuestion = 0;
+let score = 0;
+
+function showQuestion() {
+  const q = quiz[currentQuestion];
+  document.getElementById("question").innerText = q.question;
+  const answersDiv = document.getElementById("answers");
+  answersDiv.innerHTML = "";
+
+  q.answers.forEach(answer => {
+    const btn = document.createElement("button");
+    btn.innerText = answer.text;
+    btn.onclick = () => selectAnswer(answer.correct, btn);
+    answersDiv.appendChild(btn);
+  });
+}
+
+function selectAnswer(correct, btn) {
+  if (correct) {
+    btn.classList.add("correct");
+    score++;
+  } else {
+    btn.classList.add("wrong");
+  }
+
+  setTimeout(() => {
+    currentQuestion++;
+    if (currentQuestion < quiz.length) {
+      showQuestion();
+    } else {
+      showScore();
+    }
+  }, 1000);
+}
+
+function showScore() {
+  document.getElementById("question").innerText = "¡Juego terminado!";
+  document.getElementById("answers").innerHTML = "";
+  document.getElementById("score").innerText = "Puntaje: " + score + "/" + quiz.length;
+}
+
+showQuestion();
+</script>
+</body>
+</html>
